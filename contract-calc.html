@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Contract Calculator</title>
+    </head>
+    <body>
+        <h1>Contract Calculator</h1>
+        <form id="contract">
+            <p><label>Phone Price: <input id="phone" type="number" value="725" min="0"></label></p>
+            <p><label>Upfront Cost: <input id="upfront" type="number" value="0" min="0"</label></p>
+            <p><label>Monthly Cost: <input id="monthly" type="number" value="40" min="1"</label></p>
+            <p><label>Contract Term: <input id="term" type="number" min="12" value="24"></label></p>
+            <p><input type="submit" value="Calculate"></p>
+            <p id="output" aria-live="polite">No contract price loaded yet.</p>
+        </form>
+        <script>
+        const price = document.getElementById("phone")
+        const upfront = document.getElementById("upfront")
+        const monthly = document.getElementById("monthly")
+        const term = document.getElementById("term")
+        const output = document.getElementById("output")
+        document.getElementById("contract").onsubmit = (e) => {
+            e.preventDefault()
+            let base = (Number(monthly.value) * Number(term.value)) + Number(upfront.value)
+            base -= Number(price.value)
+            base /= Number(term.value)
+            if (base < 0) {
+                alert("Error: Negative contract price.")
+            } else {
+                output.innerText = `Contract price: ${base.toFixed(2)} PCM.`
+            }
+        }
+        </script>
+    </body>
+</html>
