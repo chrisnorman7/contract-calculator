@@ -11,7 +11,7 @@
             <p><label>Monthly Cost: <input id="monthly" type="number" value="40" min="1"</label></p>
             <p><label>Contract Term: <input id="term" type="number" min="12" value="24"></label></p>
             <p><input type="submit" value="Calculate"></p>
-            <p id="output" aria-live="polite">No contract price loaded yet.</p>
+            <p id="output" aria-live="polite" aria-atomic="true">No contract price loaded yet.</p>
         </form>
         <script>
         const price = document.getElementById("phone")
@@ -27,7 +27,7 @@
             if (base < 0) {
                 alert("Error: Negative contract price.")
             } else {
-                output.innerText = `Contract price: &pound;${base.toFixed(2)} PCM.`
+                output.innerHTML = `Contract Price: &pound;${base.toFixed(2)} PCM.`
             }
         }
         </script>
